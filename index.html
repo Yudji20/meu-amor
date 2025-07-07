@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meu Amor 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      color: #c70039;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5em;
+      color: #880e4f;
+    }
+
+    .heart {
+      font-size: 3em;
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .mensagem {
+      font-size: 1.5em;
+      margin: 20px auto;
+      max-width: 700px;
+      padding: 10px;
+      background: #fff0f5;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #f8bbd0;
+    }
+
+    .carrossel {
+      margin: 40px auto;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .carrossel img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    .carrossel img.active {
+      display: block;
+    }
+
+    .botoes {
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 0 5px;
+      background-color: #f06292;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    .final {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 60px 20px 40px;
+    }
+
+    .spotify {
+      max-width: 320px;
+    }
+
+    .spotify h2 {
+      color: #880e4f;
+      margin-bottom: 10px;
+    }
+
+    .gif-amor {
+      width: 150px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* 🌸 Cascata de Corações */
+    .cascata {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-repeat: repeat-y;
+      background-size: 25px;
+      animation: coracoes 10s linear infinite;
+      opacity: 0.4;
+    }
+
+    .cascata.left {
+      left: 0;
+    }
+
+    .cascata.right {
+      right: 0;
+    }
+
+    @keyframes coracoes {
+      0% { background-position-y: -100%; }
+      100% { background-position-y: 100%; }
+    }
+
+    .heart-float {
+  position: fixed;
+  font-size: 20px;
+  color: #e91e63;
+  animation: fall 5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- 🌸 Corações nas laterais -->
+  <div class="cascata left"></div>
+  <div class="cascata right"></div>
+
+  <h1>💕 Meu Amor 💕</h1>
+  <div class="heart">❤️</div>
+
+  <div class="mensagem">
+    Tenha paciência comigo,  
+    eu estou aprendendo a cuidar de você,  
+    nunca tinha tido um amor tão valioso.  
+    Te amo com todo o meu coração 💕
+  </div>
+
+  <div class="carrossel">
+    <img src="assets/amor.jpg" class="active" alt="Foto 1">
+    <img src="assets/parque.jpg"    alt="Foto 2">
+    <img src="assets/fofo.jpg"      alt="Foto 3">
+    <img src="assets/passeio.jpg"   alt="Foto 4">
+    <img src="assets/cinema.jpg"    alt="Foto 5">
+    <img src="assets/casamento.jpg" alt="Foto 6">
+    <div class="botoes">
+      <button onclick="voltar()">⟨ Anterior</button>
+      <button onclick="avancar()">Próxima ⟩</button>
+    </div>
+  </div>
+
+  <div class="final">
+    <div class="spotify">
+      <h2>🎶 Nossa Trilha Sonora</h2>
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/2l9MJrZSVjZKxWUDrl3o5j?utm_source=generator&theme=0"
+        width="100%" height="152" frameBorder="0" allowfullscreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <img class="gif-amor" src="/assets/stitch_e_angel.gif" alt="Stitch e Angel Love" />
+  </div>
+
+  <script>
+    const imagens = document.querySelectorAll('.carrossel img');
+    let indexAtual = 0;
+
+    function mostrarImagem(index) {
+      imagens.forEach(img => img.classList.remove('active'));
+      imagens[index].classList.add('active');
+    }
+
+    function avancar() {
+      indexAtual = (indexAtual + 1) % imagens.length;
+      mostrarImagem(indexAtual);
+    }
+
+    function voltar() {
+      indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
+      mostrarImagem(indexAtual);
+    }
+
+    setInterval(avancar, 5000);
+  </script>
+<script>
+  function criarCoracaoLateral() {
+    const heart = document.createElement("span");
+    heart.classList.add("heart-float");
+    heart.innerText = "❤️";
+
+    const lado = Math.random() > 0.5 ? 'left' : 'right';
+    heart.style[lado] = "10px";
+    heart.style.top = "-20px";
+
+    // Aumentado: corações de 30px a 60px
+    heart.style.fontSize = Math.random() * 30 + 120 + "px";
+
+    if (lado === 'left') {
+      heart.style.left = Math.random() * 45 + "px";
+    } else {
+      heart.style.right = Math.random() * 45 + "px";
+    }
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  setInterval(criarCoracaoLateral, 300);
+</script>
+  <footer>
+    <p>Com todo o meu amor, sempre 💖</p>
+  </footer>
+  
+</body>
+</html>
+<!-- This is a love letter page with a carousel of images, a Spotify playlist, and animated hearts. -->
+<!-- It includes a message of love and appreciation, with a playful design and animations. -->
